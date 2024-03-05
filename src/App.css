@@ -1,9 +1,268 @@
-/* Add styling for your page here */
-
-.App {
-
-}
-
-.BakeryItem {
+/* Reset margin, padding, and background */
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
   
-}
+  /* Fullscreen video container */
+  .fullscreen-video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  /* Video */
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Centered content */
+  .centerContent{
+    position: absolute;
+    color:white;
+    margin: 10% 30% 10% 30%;
+    /* width: 100%; */
+    /* transform: translate(-50%, -50%)  perspective(1000px) rotateY(0deg);  */
+    z-index: 30; /* Ensure the content stays above the videos */
+    text-align: center;
+    transform-origin: center center;
+    /* height: 100vh; */
+    transition: opacity 0.1s ease, transform 0.1s ease; /* Add transition effect for opacity and transform */
+  }
+  
+  .scroll-down-button{
+    top: 50%;
+    left: 50%;
+    position: relative;
+    z-index: 2;
+    transform: translate(-50%, -50%)  perspective(1000px) rotateY(0deg); 
+  }
+  
+  .thevideo{
+    margin-top: 200vh;
+  }
+  
+  .content-hidden{
+    
+    /* transform: translate(-200%, -50%)  perspective(1000px) rotateY(60deg);  */
+    transform: scale(1%);
+    transform-origin: center center;
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease; /* Add transition effect */
+  }
+  
+  
+  .centerContent-hidden{
+    
+    /* transform: translate(-200%, -50%)  perspective(1000px) rotateY(60deg);  */
+    transform: scale(1%);
+    transform-origin: center center;
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease; /* Add transition effect */
+  }
+  
+  .content {
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    z-index: 30; /* Ensure the content stays above the videos */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height:100%;
+    color: white;
+    opacity: 1;
+    transition: transform .2s ease, opacity 0.1s ease-out; /* Add transition effect for opacity */
+  }
+  
+  .content-visible {
+    opacity: 1;
+  }
+  
+  /* Input container */
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+    margin-bottom: 40px;
+  }
+  
+  /* Input */
+  input[type="text"] {
+    color: #bdbdbd;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #828282;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 224px;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"]:focus {
+    color: white;
+    border: 1px solid white;
+  }
+  
+  /* Button */
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.01);
+    color: white;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+    width: 224px;
+    max-width: 100%;
+    z-index: 20;
+  }
+  
+  button:hover {
+    border: 1px solid #fff;
+    background: rgba(243, 242, 242, 0.272);
+  }
+  
+  button:active {
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.01);
+    box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.20);
+  }
+  
+  /* Bobble animation */
+  .bobble {
+    animation: bobble 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
+  }
+  
+  @keyframes bobble {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(3px); }
+    100% { transform: translateY(0); }
+  }
+  
+  /* Rules button */
+  .rules-button {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    z-index: 16;
+    width: 40pt;
+  }
+  
+  /* Rules popup */
+  .rules-popup {
+    opacity: 0; /* Initially hidden */
+    position: absolute;
+    /* top: 50%;
+    left: 50%; */
+    z-index: 10; /* Above other content */
+    padding: 40px;
+    border-radius: 12px;
+    /* backdrop-filter: blur(1px); */
+    margin: 10% 20% 10% 20%;
+    /* border: 2px solid #828282; */
+    transform: scale(.5);
+    transform-origin: center center;
+    /* transform: translate(0, -50%) perspective(1000px) rotateY(-60deg); Start offscreen and rotated */
+    transition: transform 0.1s ease, opacity 0.2s ease; /* Transition for transform and opacity */
+  }
+  
+  .rules-popup.show {
+    /* backdrop-filter: blur(2px); */
+    position: absolute;
+    opacity: 1; /* Show the popup */
+    transform-origin: 50% 50%;
+    margin: 10% 20% 10% 20%;
+    top: 0;
+    transform: scale(100%);
+    transition: transform 0.1s ease, opacity 0.5s ease, translate 0s ease; /* Transition for transform and opacity */
+    mask:  radial-gradient(circle at center, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+    /* transform: translate(-50%, -50%); */
+  }
+  
+  .indented {
+    margin-left: 20%; /* Adjust the indentation as needed */
+    
+  }
+  
+  .lineA, .lineB {
+    line-height: 1;
+    height: 100%;
+    font-style: italic;
+    padding: 4px;
+  }
+  
+  .lineA {
+    background-color: #ed6b5a69;
+  }
+  
+  .lineB {
+    background-color: #396da498;
+  }
+  
+  .lineATitle {
+    font-weight: bold;
+    color: #ed6b5a; /* Change the color as desired */
+    background-color: transparent !important; /* Remove background highlighting */
+  }
+  
+  .lineBTitle {
+    font-weight: bold;
+    color: #396da4; /* Change the color as desired */
+    background-color: transparent !important; /* Remove background highlighting */
+  }
+  
+  .popuptext{
+    opacity: 1;
+  }
+  
+  
+  
+  .parallax-container{
+    position:absolute;
+    top: 0;
+    transform: scale(1); /* Adjust scale value as needed */
+    transition: transform 6.5s ease-in; /* Smooth transition */
+  }
+  
+  .animation-button{
+    bottom: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%)  perspective(1000px) rotateY(0deg); 
+  }
+  
+  h1{
+    font-size: 65pt;
+  }
+  
+  
+  .video-scale-up1 {
+    transform: translate(10pt) scale(1.4); /* Adjust scale value as needed */
+    transition: transform 6.5s ease-out; /* Smooth transition */
+  }
+  
+  .video-scale-up2 {
+    transform:  scale(1.2); /* Adjust scale value as needed */
+    transition: transform 4.5s ease-out; /* Smooth transition */
+  }
+  
+  .video-scale-up3 {
+    transform: scale(1.1); /* Adjust scale value as needed */
+    transition: transform 2.0s ease-out; /* Smooth transition */
+  }
